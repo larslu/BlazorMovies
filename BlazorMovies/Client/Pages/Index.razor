@@ -1,0 +1,42 @@
+﻿@page "/"
+
+<p>Hello @StringUtilities.CustomToUpper("Hej på dig lars h")</p>
+
+<button @onclick="@(() => Console.WriteLine("I have been clicked!!"))">Click me!</button>
+
+<div>
+    <h3>Movie</h3>
+
+
+    @foreach (var movie in movies)
+    {
+        <p>Title: @movie.Title</p>
+        <p>ReleaseDate: @movie.ReleaseDate.ToString("yyyy MMM dd")</p>
+    }
+</div>
+
+@code{
+        string name = "Lars Lundin";
+
+        List<Movie> movies;
+
+    protected override void OnInitialized()
+    {
+        movies = new List<Movie>()
+        {
+            new Movie(){Title="Hello", ReleaseDate=new DateTime(2019,5,9)},
+            new Movie(){Title="Goonies", ReleaseDate=new DateTime(1990,5,9)},
+            new Movie(){Title="Indiana Jones", ReleaseDate=new DateTime(2019,5,9)}
+
+        };
+    }
+
+    string CustomToUpper(string value) => value.ToUpper();
+
+    Movie spiderman = new Movie()
+    {
+        Title = "Spiderman, far from home",
+        ReleaseDate = new DateTime(2020, 7, 2)
+    };
+
+}
